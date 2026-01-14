@@ -4,5 +4,19 @@
   "branch": "main",
   "me": "kiril-bormin",
   "journalStartDate": null,
-  "exceptions": []
+  "exceptions": [
+    {
+      "id": "4f07d8fb-b5e8-4887-b171-22e26241f4bf",
+      "type": "commitpatch",
+      "sha": "8008d40b8e67e860a74b854b4efb8e63ffadbdf8",
+      "url": "https://github.com/kiril-bormin/AdonisJS-Flashcards/commit/8008d40b8e67e860a74b854b4efb8e63ffadbdf8",
+      "name": "feat (exercice) : step 0-2",
+      "description": "suivi des étapes de 0 à 2",
+      "date": "2026-01-14T14:21:00.000Z",
+      "duration": 120,
+      "status": "Done",
+      "author": "kiril-bormin",
+      "patch": true
+    }
+  ]
 }
