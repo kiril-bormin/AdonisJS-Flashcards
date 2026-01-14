@@ -1,5 +1,6 @@
 import Teacher from '#models/teacher'
 import type { HttpContext } from '@adonisjs/core/http'
+import { dd } from '@adonisjs/core/services/dumper'
 export default class TeachersController {
   /**
    * Display a list of resource
