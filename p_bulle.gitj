@@ -17,6 +17,19 @@
       "status": "Done",
       "author": "kiril-bormin",
       "patch": true
+    },
+    {
+      "id": "e3c7c9a9-b88f-4dc4-9104-3a5321c8940d",
+      "type": "commitpatch",
+      "sha": "4ccdbe94210eb3fb6198485030a6647e23f9e563",
+      "url": "https://github.com/kiril-bormin/AdonisJS-Flashcards/commit/4ccdbe94210eb3fb6198485030a6647e23f9e563",
+      "name": "feat (exercice) : step 7",
+      "description": "",
+      "date": "2026-01-21T13:40:00.000Z",
+      "duration": 40,
+      "status": "Done",
+      "author": "kiril-bormin",
+      "patch": true
     }
   ]
 }
