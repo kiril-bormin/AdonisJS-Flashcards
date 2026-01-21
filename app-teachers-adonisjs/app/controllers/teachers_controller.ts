@@ -1,5 +1,6 @@
 import Section from '#models/section'
 import Teacher from '#models/teacher'
+import { teacherValidator } from '#validators/teacher'
 import type { HttpContext } from '@adonisjs/core/http'
 import { dd } from '@adonisjs/core/services/dumper'
 export default class TeachersController {
@@ -13,14 +14,32 @@ export default class TeachersController {
       .exec()
     return view.render('pages/home', { teachers })
   }
-  async create({}: HttpContext) {}
-  /**
-   * Handle form submission for the create action
-   */
-  async store({ request }: HttpContext) {}
-  /**
-   * Show individual record
-   */
+  async create({ view }: HttpContext) {
+    const sections = await Section.query().orderBy('name', 'asc')
+
+    return view.render('pages/teachers/create', { title: "ajout d'un enseignant", sections })
+  }
+
+  async store({ request, session, response }: HttpContext) {
+    const { gender, firstname, lastname, nickname, origine, sectionId } =
+      await request.validateUsing(teacherValidator)
+
+    const teacher = await Teacher.create({
+      gender,
+      firstname,
+      lastname,
+      nickname,
+      origine,
+      sectionId,
+    })
+
+    session.flash(
+      'success',
+      `Le nouvel enseignant ${teacher.lastname}
+${teacher.firstname} a été ajouté avec succès !`
+    )
+    return response.redirect().toRoute('home')
+  }
   async show({ view, params }: HttpContext) {
     // SELECT *
     // FROM teacher AS T
