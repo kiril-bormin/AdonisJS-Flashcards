@@ -3,7 +3,7 @@ import Section from '#models/section'
 export default class extends BaseSeeder {
   async run() {
     // Création de sections
-    await Section.createMany([
+    await section.storeMany([
       { id: 1, name: 'Informatique' },
       { id: 2, name: 'Electronique' },
       { id: 3, name: 'Automatique' },

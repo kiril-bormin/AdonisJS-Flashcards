@@ -98,6 +98,7 @@ mis à jour avec succès !`
    */
   async destroy({ params, session, response }: HttpContext) {
     const teacher = await Teacher.findOrFail(params.id)
+    dd(teacher)
     await teacher.delete()
     session.flash(
       'success',

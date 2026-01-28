@@ -14,7 +14,7 @@
   <body>
     @component('components/layout', { title: 'Accueil' })
       <h3>
-        Liste des enseignants
+        Liste des sections
       </h3>
       <table>
         <thead>
@@ -22,30 +22,24 @@
             <th>
               Nom
             </th>
-            <th>
+            {{--  <th>
               Surnom
             </th>
             <th>
               Options
-            </th>
+            </th>  --}}
           </tr>
         </thead>
         <tbody>
-          @each ((teacher, index) in teachers)
+          @each ((section, index) in sections)
             <tr>
               <td>
-                {{ teacher.lastname }} {{ teacher.firstname }}
-              </td>
-              <td>
-                {{ teacher.nickname }}
+                {{ section.name }}
               </td>
               <td class="containerOptions">
-                <a href="{{ route('teacher.edit', {id: teacher.id}) }}">
-                  <img height="20em" src="/img/edit.png" alt="edit" />
-                </a>
                 {{-- Ajout d'un dformulaire pour la suppression d'un enseignant --}}
                 <form
-                  action="{{ route('teacher.destroy', { id: teacher.id }) }}?
+                  action="{{ route('section.destroy', { id: section.id }) }}?
 _method=DELETE"
                   method="POST"
                   style="display: inline"
@@ -56,16 +50,13 @@ padding: 0; cursor: pointer;">
                     <img height="20em" src="/img/delete.png" alt="delete" />
                   </button>
                 </form>
-                <a href="{{ route('teacher.show', {id: teacher.id}) }}">
-                  <img height="20em" src="/img/detail.png" alt="detail" />
-                </a>
               </td>
             </tr>
           @end
         </tbody>
       </table>
     @endcomponent
-    
+      
     <script src="js/script.js">
 
     </script>

@@ -1,0 +1,14 @@
+@component('components/layout', { title: title })
+  {{-- Bloc Prénom --}}
+  <div class="field">
+    <label for="firstname">Name</label>
+    <input type="text" id="firstname" name="firstname" value="{{ old('firstname') || '' }}" />
+    @inputError('firstname')
+      <p class="text-danger">
+        {{ $messages.join(', ') }}
+      </p>
+    @end
+  </div>
+  <button type="submit">Enregistrer</button>
+</form>
+@end

@@ -30,6 +30,6 @@ export default class extends BaseSeeder {
         sectionId: 1,
       },
     ])
-    await TeacherFactory.createMany(10)
+    await TeacherFactory.createMany(10000)
   }
 }
