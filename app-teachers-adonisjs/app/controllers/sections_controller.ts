@@ -17,13 +17,13 @@ export default class SectionsController {
    */
   async create({ view }: HttpContext) {
     return view.render('pages/sections/create', { title: "ajout d'une section" })
+    dd('test')
   }
 
   /**
    * Handle form submission for the create action
    */
   async store({ request, session, response }: HttpContext) {
-    // dd(request.all())
     const { name } = await request.validateUsing(sectionValidator)
 
     const section = await Section.create({

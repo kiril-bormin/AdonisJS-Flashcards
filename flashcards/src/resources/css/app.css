@@ -8,3 +8,27 @@ body {
   height: 100%;
   width: 100%;
 }
+
+.container-header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1400px;
+  align-items: center;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.logo-header,
+.login-container {
+  padding: 10px
+}
+
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
