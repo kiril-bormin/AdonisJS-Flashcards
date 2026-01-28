@@ -16,15 +16,14 @@ export default class SectionsController {
    * Display form to create a new record
    */
   async create({ view }: HttpContext) {
-    const sections = await Section.query().orderBy('name', 'asc')
-
-    return view.render('pages/sections/create', { title: "ajout d'une section", sections })
+    return view.render('pages/sections/create', { title: "ajout d'une section" })
   }
 
   /**
    * Handle form submission for the create action
    */
   async store({ request, session, response }: HttpContext) {
+    // dd(request.all())
     const { name } = await request.validateUsing(sectionValidator)
 
     const section = await Section.create({
@@ -32,7 +31,7 @@ export default class SectionsController {
     })
 
     session.flash('success', `La nouvelle section ${section.name} a été ajouté avec succès !`)
-    return response.redirect().toRoute('sections.index')
+    return response.redirect().toRoute('section.index')
   }
 
   /**
