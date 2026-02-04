@@ -10,12 +10,26 @@
       Version statique de l'application des surnoms
     </title>
   </head>
-
   <body>
     @component('components/layout', { title: 'Accueil' })
-      <a href="{{ route('deck.create') }}">Créer un nouveau deck</a>
+      @each(deck in decks)
+        <a class="deck-link" href="{{ route('deck.show', { id: deck.id }) }}">
+          <div class="deck-card">
+            <h2>
+              {{ deck.name }}
+            </h2>
+            <p>
+              {{ deck.description }}
+            </p>
+            <hr />
+          </div>
+        @end
+      </a>
+      <form action="{{ route('deck.create') }}" method="GET">
+        <button class="create-deck" type="submit">Créer un nouveau deck</button>
+      </form>
     @endcomponent
-    
+      
     <script src="js/script.js">
 
     </script>

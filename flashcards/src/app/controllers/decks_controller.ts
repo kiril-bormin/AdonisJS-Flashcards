@@ -1,4 +1,5 @@
 import Deck from '#models/deck'
+import Card from '#models/card'
 import { deckValidator } from '#validators/deck'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -6,7 +7,10 @@ export default class DecksController {
   /**
    * Display a list of resource
    */
-  async index({}: HttpContext) {}
+  async index({ view }: HttpContext) {
+    const decks = await Deck.all()
+    return view.render('pages/home', { decks })
+  }
 
   /**
    * Display form to create a new record
@@ -26,14 +30,17 @@ export default class DecksController {
       description,
     })
 
-    session.flash('success', `La nouvelle section ${deck.name} a été ajouté avec succès !`)
-    return response.redirect().toRoute('section.index')
+    session.flash('success', `Le nouveau deck ${deck.name} a été ajouté avec succès !`)
+    return response.redirect().toRoute('home')
   }
 
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
+  async show({ params, view }: HttpContext) {
+    const deck = await Deck.findOrFail(params.id)
+    return view.render('pages/deck/show', { deck })
+  }
 
   /**
    * Edit individual record

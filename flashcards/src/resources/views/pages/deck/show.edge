@@ -1,0 +1,11 @@
+@component('components/layout', { title: title })
+  <h1>
+    {{ deck.name }}
+  </h1>
+  <p>
+    {{ deck.description }}
+  </p>
+  <form action="{{ route('card.create') }}" method="GET">
+    <button type="submit">Ajouter une carte</button>
+  </form>
+@endcomponent

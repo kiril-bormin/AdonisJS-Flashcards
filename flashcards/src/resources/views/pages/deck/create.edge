@@ -1,5 +1,5 @@
 @component('components/layout', { title: title })
-  <form action="{{ route('deck.create') }}" method="POST">
+  <form action="{{ route('deck.store') }}" method="POST">
     {{ csrfField() }}
     {{-- Bloc Name --}}
     <div class="field">
