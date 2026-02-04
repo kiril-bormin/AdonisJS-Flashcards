@@ -1,5 +1,4 @@
 import Deck from '#models/deck'
-import Card from '#models/card'
 import { deckValidator } from '#validators/deck'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -39,7 +38,8 @@ export default class DecksController {
    */
   async show({ params, view }: HttpContext) {
     const deck = await Deck.findOrFail(params.id)
-    return view.render('pages/deck/show', { deck })
+    await deck.load('cards') // ajouter les cartes associées au deck
+    return view.render('pages/deck/show', { deck, cards: deck.cards })
   }
 
   /**

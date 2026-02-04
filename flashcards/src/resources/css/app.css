@@ -36,9 +36,9 @@ body {
   color: black
 }
 
-.create-deck {
+.add-button {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 15px;
   padding: 7px;
 }
 

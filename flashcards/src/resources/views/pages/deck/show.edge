@@ -5,7 +5,18 @@
   <p>
     {{ deck.description }}
   </p>
-  <form action="{{ route('card.create') }}" method="GET">
-    <button type="submit">Ajouter une carte</button>
+  @each(card in cards)
+    <div class="deck-card">
+      <h2>
+        {{ card.front }}
+      </h2>
+      <p>
+        {{ card.back }}
+      </p>
+      <hr />
+    </div>
+  @end
+  <form action="{{ route('card.create', { id: deck.id }) }}" method="GET">
+    <button class="add-button" type="submit">Ajouter une carte</button>
   </form>
 @endcomponent

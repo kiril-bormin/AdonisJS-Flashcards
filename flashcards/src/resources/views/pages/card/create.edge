@@ -1,0 +1,27 @@
+@component('components/layout', { title: title })
+  <form action="{{ route('card.store', { id: deckId }) }}" method="POST">
+    {{ csrfField() }}
+    {{-- Bloc front --}}
+    <div class="field">
+      <label for="front">Front</label>
+      <input type="text" id="front" name="front" value="{{ old('front') || '' }}" />
+      @inputError('front')
+        <p class="text-danger">
+          {{ $messages.join(', ') }}
+        </p>
+      @end
+    </div>
+    {{-- Bloc back --}}
+    <div class="field">
+      <label for="description">Back</label>
+      <input type="text" id="back" name="back" value="{{ old('back')
+|| '' }}" />
+      @inputError('back')
+        <p class="text-danger">
+          {{ $messages.join(', ') }}
+        </p>
+      @end
+    </div>
+    <button class="add-button" type="submit">Enregistrer</button>
+  </form>
+@end
