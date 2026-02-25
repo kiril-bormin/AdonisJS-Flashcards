@@ -48,48 +48,57 @@
             @end
           </tbody>
         </table>
-        <form action="{{ route('deck.create') }}" method="GET">
-          <button class="add-button" type="submit">Créer un nouveau deck</button>
-        </form>
-      @endcomponent
+      </div>
+      <form action="{{ route('deck.create') }}" method="GET">
+        <button class="add-button" type="submit">Créer un nouveau deck</button>
+      </form>
+    @endcomponent
       
-      <script src="js/script.js">
+    <script src="js/script.js">
 
-      </script>
-      <style>
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          font-family: sans-serif;
-        }
-        
-        h1 {
-          text-align: center;
-          margin-bottom: 40px;
-        }
-        
-        .deck-table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-bottom: 30px;
-        }
-        
-        .deck-table th {
-          text-align: left;
-          font-size: 1.2rem;
-          padding-bottom: 20px;
-        }
-        
-        .deck-table td {
-          padding: 15px 0;
-        }
-        
-        .deck-link {
-          text-decoration: none;
-          color: black;
-        }
-      </style>
-    </div>
+    </script>
+    <style>
+      .container {
+        width: 1000px;
+        margin: 0 auto;
+        font-family: sans-serif;
+      }
+      
+      h1 {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      .deck-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+      }
+      
+      .deck-table th {
+        text-align: left;
+        font-size: 25px;
+        padding-bottom: 20px;
+        border: 1px solid #dddddd;
+        padding: 8px;
+      }
+      
+      .deck-table td {
+        padding: 10px 0;
+        font-size: 18px;
+        border: 1px solid #dddddd;
+        padding: 8px;
+      }
+      
+      .deck-table td:first-child {
+        font-weight: bold;
+      }
+      
+      .deck-link {
+        text-decoration: none;
+        color: black;
+      }
+    </style>
 
   </body>
 
