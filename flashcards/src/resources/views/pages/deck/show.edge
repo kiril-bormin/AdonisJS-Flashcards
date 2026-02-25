@@ -4,9 +4,12 @@
       <form action="{{ route('deck.edit', { id: deck.id }) }}" method="GET">
         <button class="add-button" type="submit">Modifier le deck</button>
       </form>
-      <form action="{{ route('deck.destroy', { id: deck.id }) }}" method="POST">
+      <form
+        action="{{ route('deck.destroy', { id: deck.id }) }}"
+        method="POST"
+        onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer le deck « {{ deck.name }} » ?')"
+      >
         {{ csrfField() }}
-        <input type="hidden" name="_method" value="DELETE" />
         <button class="add-button" type="submit">Supprimer le deck</button>
       </form>
     </div>
@@ -26,6 +29,9 @@
         <th>
           Réponse
         </th>
+        <th>
+          Options
+        </th>
       </tr>
       @each(card in cards)
         <tr>
@@ -34,6 +40,21 @@
           </td>
           <td>
             {{ card.back }}
+          </td>
+          <td class="options-cell">
+            <div class="options-wrapper">
+              <form action="{{ route('card.edit', { id: card.id }) }}" method="GET">
+                <button class="add-button" type="submit">Modifier</button>
+              </form>
+              <form
+                action="{{ route('card.destroy', { id: card.id }) }}"
+                method="POST"
+                onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette carte ?')"
+              >
+                {{ csrfField() }}
+                <button class="add-button" type="submit">Supprimer</button>
+              </form>
+            </div>
           </td>
         </tr>
       @end
@@ -49,6 +70,24 @@
       width: 1000px;
       margin: 0 auto;
       font-family: sans-serif;
+    }
+    
+    .deck-table th:nth-child(3),
+    .deck-table td.options-cell {
+      width: 1px;
+      white-space: nowrap;
+      padding: 8px;
+    }
+    
+    .options-wrapper {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    
+    .options {
+      display: flex;
+      gap: 10px;
     }
     
     h1 {

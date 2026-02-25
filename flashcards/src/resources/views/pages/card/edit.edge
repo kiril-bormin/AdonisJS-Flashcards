@@ -1,10 +1,10 @@
 @component('components/layout', { title: title })
-  <form action="{{ route('card.store', { id: deckId }) }}" method="POST">
+  <form action="{{ route('card.update', { id: card.id }) }}" method="POST">
     {{ csrfField() }}
     {{-- Bloc front --}}
     <div class="field">
       <label for="front">Question</label>
-      <input type="text" id="front" name="front" value="{{ old('front') || '' }}" />
+      <input type="text" id="front" name="front" value="{{ old('front') || card.front }}" />
       @inputError('front')
         <p class="text-danger">
           {{ $messages.join(', ') }}
@@ -13,8 +13,8 @@
     </div>
     {{-- Bloc back --}}
     <div class="field">
-      <label for="description">Réponse</label>
-      <input type="text" id="back" name="back" value="{{ old('back')|| '' }}" />
+      <label for="back">Réponse</label>
+      <input type="text" id="back" name="back" value="{{ old('back') || card.back }}" />
       @inputError('back')
         <p class="text-danger">
           {{ $messages.join(', ') }}
@@ -23,4 +23,4 @@
     </div>
     <button class="add-button" type="submit">Enregistrer</button>
   </form>
-@end
+@endcomponent

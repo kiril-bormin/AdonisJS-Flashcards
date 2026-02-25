@@ -44,15 +44,32 @@ export default class CardsController {
   /**
    * Edit individual record
    */
-  async edit({ params }: HttpContext) {}
+  async edit({ params, view }: HttpContext) {
+    const card = await Card.findOrFail(params.id)
+    return view.render('pages/card/edit', { title: 'Modifier la carte', card })
+  }
 
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
+  async update({ params, request, session, response }: HttpContext) {
+    const card = await Card.findOrFail(params.id)
+    const { front, back } = await request.validateUsing(cardValidator)
+    card.front = front
+    card.back = back
+    await card.save()
+
+    session.flash('success', `La carte a été modifiée avec succès !`)
+    return response.redirect().toRoute('deck.show', { id: card.deckId })
+  }
 
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  async destroy({ params, response }: HttpContext) {
+    const card = await Card.findOrFail(params.id)
+    const deckId = card.deckId
+    await card.delete()
+    return response.redirect().toRoute('deck.show', { id: deckId })
+  }
 }
