@@ -4,7 +4,9 @@
       <form action="{{ route('deck.edit', { id: deck.id }) }}" method="GET">
         <button class="add-button" type="submit">Modifier le deck</button>
       </form>
-      <form action="{{ route('deck.update', { id: deck.id }) }}" method="GET">
+      <form action="{{ route('deck.destroy', { id: deck.id }) }}" method="POST">
+        {{ csrfField() }}
+        <input type="hidden" name="_method" value="DELETE" />
         <button class="add-button" type="submit">Supprimer le deck</button>
       </form>
     </div>

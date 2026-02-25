@@ -1,6 +1,7 @@
 import Deck from '#models/deck'
 import { deckValidator } from '#validators/deck'
 import type { HttpContext } from '@adonisjs/core/http'
+import { dd } from '@adonisjs/core/services/dumper'
 
 export default class DecksController {
   /**
@@ -68,5 +69,10 @@ export default class DecksController {
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  async destroy({ params, response, session }: HttpContext) {
+    const deck = await Deck.findOrFail(params.id)
+    await deck.delete()
+    session.flash('success', `Le deck ${deck.name} a été supprimé avec succès !`)
+    return response.redirect().toRoute('home')
+  }
 }
