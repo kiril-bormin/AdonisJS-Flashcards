@@ -1,5 +1,13 @@
 @component('components/layout', { title: title })
   <div class="container">
+    <div class="buttons-section">
+      <form action="{{ route('card.create', { id: deck.id }) }}" method="GET">
+        <button class="add-button" type="submit">Modifier le deck</button>
+      </form>
+      <form action="{{ route('card.create', { id: deck.id }) }}" method="GET">
+        <button class="add-button" type="submit">Supprimer le deck</button>
+      </form>
+    </div>
     <div>
       <h1>
         {{ deck.name }}
@@ -7,14 +15,6 @@
       <p class="description">
         {{ deck.description }}
       </p>
-    </div>
-    <div>
-      <form action="{{ route('card.create', { id: deck.id }) }}" method="GET">
-        <button class="add-button" type="submit">Modifier le deck</button>
-      </form>
-      <form action="{{ route('card.create', { id: deck.id }) }}" method="GET">
-        <button class="add-button" type="submit">Supprimer le deck</button>
-      </form>
     </div>
     <table class="deck-table">
       <tr>
@@ -51,6 +51,13 @@
     
     h1 {
       text-align: center;
+    }
+    
+    .buttons-section {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      left: 70%;
     }
     
     .description {
