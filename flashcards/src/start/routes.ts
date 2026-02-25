@@ -20,6 +20,10 @@ router.post('/deck/store', [DecksController, 'store']).as('deck.store')
 
 router.get('/deck/:id', [DecksController, 'show']).as('deck.show')
 
+router.get('/deck/:id/edit', [DecksController, 'edit']).as('deck.edit')
+
+router.post('/deck/:id', [DecksController, 'update']).as('deck.update')
+
 //CARDS ROUTES
 router.get('/decks/:id/cards/create', [CardsController, 'create']).as('card.create')
 

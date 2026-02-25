@@ -1,0 +1,32 @@
+@component('components/layout', { title: title })
+  <form action="{{ route('deck.update', { id: deck.id }) }}" method="POST">
+    {{ csrfField() }}
+    <input type="hidden" name="_method" value="PUT" />
+    {{-- Bloc Name --}}
+    <div class="field">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" value="{{ old('name') || deck.name }}" />
+      @inputError('name')
+        <p class="text-danger">
+          {{ $messages.join(', ') }}
+        </p>
+      @end
+    </div>
+    {{-- Bloc Description --}}
+    <div class="field">
+      <label for="description">Description</label>
+      <input
+        type="text"
+        id="description"
+        name="description"
+        value="{{ old('description') || deck.description }}"
+      />
+      @inputError('description')
+        <p class="text-danger">
+          {{ $messages.join(', ') }}
+        </p>
+      @end
+    </div>
+    <button class="add-button" type="submit">Enregistrer</button>
+  </form>
+@endcomponent
