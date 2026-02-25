@@ -7,7 +7,7 @@ export default class DecksController {
    * Display a list of resource
    */
   async index({ view }: HttpContext) {
-    const decks = await Deck.all()
+    const decks = await Deck.query().withCount('cards')
     return view.render('pages/home', { decks })
   }
 

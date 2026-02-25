@@ -12,29 +12,85 @@
   </head>
   <body>
     @component('components/layout', { title: 'Accueil' })
-      @each(deck in decks)
-        <a class="deck-link" href="{{ route('deck.show', { id: deck.id }) }}">
-          <div class="deck-card">
-            <h2>
-              {{ deck.name }}
-            </h2>
-            <p>
-              {{ deck.description }}
-            </p>
-            <hr />
-          </div>
-        @end
-      </a>
-      <form action="{{ route('deck.create') }}" method="GET">
-        <button class="add-button" type="submit">Créer un nouveau deck</button>
-      </form>
-    @endcomponent
+      <div class="container">
+        <h1>
+          Mes decks
+        </h1>
+        <table class="deck-table">
+          <thead>
+            <tr>
+              <th>
+                Titre
+              </th>
+              <th>
+                Description
+              </th>
+              <th class="text-right">
+                Cartes
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @each(deck in decks)
+              <tr>
+                <td>
+                  <a href="{{ route('deck.show', { id: deck.id }) }}" class="deck-link">
+                    {{ deck.name }}
+                  </a>
+                </td>
+                <td>
+                  {{ deck.description }}
+                </td>
+                <td class="text-right">
+                  {{ deck.$extras.cards_count || 0 }}
+                </td>
+              </tr>
+            @end
+          </tbody>
+        </table>
+        <form action="{{ route('deck.create') }}" method="GET">
+          <button class="add-button" type="submit">Créer un nouveau deck</button>
+        </form>
+      @endcomponent
       
-    <script src="js/script.js">
+      <script src="js/script.js">
 
-    </script>
-  </div>
+      </script>
+      <style>
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          font-family: sans-serif;
+        }
+        
+        h1 {
+          text-align: center;
+          margin-bottom: 40px;
+        }
+        
+        .deck-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 30px;
+        }
+        
+        .deck-table th {
+          text-align: left;
+          font-size: 1.2rem;
+          padding-bottom: 20px;
+        }
+        
+        .deck-table td {
+          padding: 15px 0;
+        }
+        
+        .deck-link {
+          text-decoration: none;
+          color: black;
+        }
+      </style>
+    </div>
 
-</body>
+  </body>
 
 </html>

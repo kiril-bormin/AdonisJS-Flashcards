@@ -1,12 +1,16 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { cardValidator } from '#validators/card'
 import Card from '#models/card'
+import Deck from '#models/deck'
 
 export default class CardsController {
   /**
    * Display a list of resource
    */
-  async index({}: HttpContext) {}
+  async index({ view }: HttpContext) {
+    const decks = await Deck.query().withCount('cards')
+    return view.render('pages/home', { decks })
+  }
 
   /**
    * Display form to create a new record
