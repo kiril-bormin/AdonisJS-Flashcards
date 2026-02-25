@@ -1,22 +1,91 @@
 @component('components/layout', { title: title })
-  <h1>
-    {{ deck.name }}
-  </h1>
-  <p>
-    {{ deck.description }}
-  </p>
-  @each(card in cards)
+  <div class="container">
     <div>
-      <h2>
-        {{ card.front }}
-      </h2>
-      <p>
-        {{ card.back }}
+      <h1>
+        {{ deck.name }}
+      </h1>
+      <p class="description">
+        {{ deck.description }}
       </p>
-      <hr />
     </div>
-  @end
+    <div>
+      <form action="{{ route('card.create', { id: deck.id }) }}" method="GET">
+        <button class="add-button" type="submit">Modifier le deck</button>
+      </form>
+      <form action="{{ route('card.create', { id: deck.id }) }}" method="GET">
+        <button class="add-button" type="submit">Supprimer le deck</button>
+      </form>
+    </div>
+    <table class="deck-table">
+      <tr>
+        <th>
+          Question
+        </th>
+        <th>
+          Réponse
+        </th>
+      </tr>
+      @each(card in cards)
+        <tr>
+          <td>
+            {{ card.front }}
+          </td>
+          <td>
+            {{ card.back }}
+          </td>
+        </tr>
+      @end
+    </table>
+  </div>
+
   <form action="{{ route('card.create', { id: deck.id }) }}" method="GET">
     <button class="add-button" type="submit">Ajouter une carte</button>
   </form>
+
+  <style>
+    .container {
+      width: 1000px;
+      margin: 0 auto;
+      font-family: sans-serif;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    .description {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .deck-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+    
+    .deck-table th {
+      text-align: left;
+      font-size: 25px;
+      padding-bottom: 20px;
+      border: 1px solid #dddddd;
+      padding: 8px;
+    }
+    
+    .deck-table td {
+      padding: 10px 0;
+      font-size: 18px;
+      border: 1px solid #dddddd;
+      padding: 8px;
+    }
+    
+    .deck-table td:first-child {
+      font-weight: bold;
+    }
+    
+    .deck-link {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
 @endcomponent

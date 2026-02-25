@@ -17,36 +17,32 @@
           Mes decks
         </h1>
         <table class="deck-table">
-          <thead>
+          <tr>
+            <th>
+              Titre
+            </th>
+            <th>
+              Description
+            </th>
+            <th class="text-right">
+              Cartes
+            </th>
+          </tr>
+          @each(deck in decks)
             <tr>
-              <th>
-                Titre
-              </th>
-              <th>
-                Description
-              </th>
-              <th class="text-right">
-                Cartes
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            @each(deck in decks)
-              <tr>
-                <td>
-                  <a href="{{ route('deck.show', { id: deck.id }) }}" class="deck-link">
-                    {{ deck.name }}
+              <td>
+                <a href="{{ route('deck.show', { id: deck.id }) }}" class="deck-link">
+                  {{ deck.name }}
                   </a>
-                </td>
-                <td>
-                  {{ deck.description }}
-                </td>
-                <td class="text-right">
-                  {{ deck.$extras.cards_count || 0 }}
-                </td>
-              </tr>
-            @end
-          </tbody>
+              </td>
+              <td>
+                {{ deck.description }}
+              </td>
+              <td class="text-right">
+                {{ deck.$extras.cards_count || 0 }}
+              </td>
+            </tr>
+          @end
         </table>
       </div>
       <form action="{{ route('deck.create') }}" method="GET">
