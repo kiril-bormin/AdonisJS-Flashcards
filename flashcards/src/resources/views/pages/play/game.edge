@@ -40,7 +40,9 @@
           href="{{ route('play.play', { id: deckId }) }}?mode={{ mode }}&index={{ index + 1 }}&showAnswer=false"
           class="add-button btn-juste"
         >Prochain</a>
-
+        <p>
+          Carte {{ index + 1 }} / {{ total }}
+        </p>
       </div>
     @end
     

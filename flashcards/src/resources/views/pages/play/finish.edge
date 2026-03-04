@@ -13,6 +13,17 @@
       <p class="score">
         Votre score : {{ score }} / {{ total }}
       </p>
+      @if(score === total)
+        <br />
+        <p class="result">
+          Félicitations, vous avez tout juste !
+        </p>
+      @elseif(score === 0)
+        <br />
+        <p class="result">
+          Désolé, mais vous êtes nuuull
+        </p>
+      @endif
     @endif
     <a href="{{ route('deck.show', { id: deckId }) }}" class="add-button">Retourner vers le deck</a>
   </div>
