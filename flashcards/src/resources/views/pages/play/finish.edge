@@ -7,8 +7,13 @@
       {{ deckName }}
     </p>
     <p class="mode-label">
-      en mode basique
+      en mode <strong>{{ mode }}</strong>
     </p>
+    @if(mode == 'revision')
+      <p class="score">
+        Votre score : {{ score }} / {{ total }}
+      </p>
+    @endif
     <a href="{{ route('deck.show', { id: deckId }) }}" class="add-button">Retourner vers le deck</a>
   </div>
 

@@ -31,20 +31,37 @@ export default class PlaysController {
 
     const cards = deck.cards
     const total = cards.length
+    const score = Number(request.input('score', 0))
     const mode = request.input('mode', 'basic')
     const index = Number(request.input('index', 0))
     const showAnswer = request.input('showAnswer', 'false') === 'true'
 
+    //si toutes les cartes était joués
     if (index >= total) {
       return view.render('pages/play/finish', {
         title: 'Résultat',
         deckId: deck.id,
         deckName: deck.name,
         total,
+        score,
+        mode,
       })
     }
 
     const card = cards[index]
+    //mode révision
+    if (mode === 'revision') {
+      return view.render('pages/play/revision', {
+        title: deck.name,
+        deckId: deck.id,
+        card,
+        index,
+        total,
+        mode,
+        score,
+        showAnswer,
+      })
+    }
 
     return view.render('pages/play/game', {
       title: deck.name,
