@@ -60,6 +60,46 @@
       "duration": 90,
       "status": "Done",
       "author": "kiril-bormin"
+    },
+    {
+      "id": "8831b922-d399-4e0b-aad2-8ccc944d33f3",
+      "type": "commitless",
+      "name": "fix (mode) : révision",
+      "description": "",
+      "date": "2026-03-04T15:07:00.000Z",
+      "duration": 15,
+      "status": "Done",
+      "author": "kiril-bormin"
+    },
+    {
+      "id": "306ef858-8bcb-45cf-9243-df8b3e2fe383",
+      "type": "commitless",
+      "name": "feat (modes) : ajustements",
+      "description": "",
+      "date": "2026-03-04T15:08:00.000Z",
+      "duration": 10,
+      "status": "Done",
+      "author": "kiril-bormin"
+    },
+    {
+      "id": "409c5f3a-b584-417b-a45f-230ba7366709",
+      "type": "commitless",
+      "name": "feat (seeder) : ajouté seeder",
+      "description": "",
+      "date": "2026-03-04T15:08:00.000Z",
+      "duration": 5,
+      "status": "Done",
+      "author": "kiril-bormin"
+    },
+    {
+      "id": "46c29197-2710-4073-b630-5af77c746d85",
+      "type": "commitless",
+      "name": "fix (mode) : correction mode basique",
+      "description": "",
+      "date": "2026-03-04T15:08:00.000Z",
+      "duration": 10,
+      "status": "Done",
+      "author": "kiril-bormin"
     }
   ]
 }
