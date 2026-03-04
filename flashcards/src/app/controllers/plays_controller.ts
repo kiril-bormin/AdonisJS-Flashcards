@@ -22,7 +22,7 @@ export default class PlaysController {
    */
   async show({ params, view }: HttpContext) {
     const deck = await Deck.findOrFail(params.id)
-    await deck.load('cards') // ajouter les cartes associées au deck
+    await deck.load('cards')
     return view.render('pages/play/mode', { deck, cards: deck.cards, title: deck.name })
   }
   async play({ params, request, view }: HttpContext) {
@@ -33,16 +33,13 @@ export default class PlaysController {
     const total = cards.length
     const mode = request.input('mode', 'basic')
     const index = Number(request.input('index', 0))
-    const score = Number(request.input('score', 0))
     const showAnswer = request.input('showAnswer', 'false') === 'true'
 
-    // All cards have been played → finish screen
     if (index >= total) {
       return view.render('pages/play/finish', {
         title: 'Résultat',
         deckId: deck.id,
         deckName: deck.name,
-        score,
         total,
       })
     }
@@ -55,7 +52,6 @@ export default class PlaysController {
       card,
       index,
       total,
-      score,
       mode,
       showAnswer,
     })

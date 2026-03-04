@@ -12,7 +12,7 @@
       </div>
       <div class="play-actions">
         <a
-          href="{{ route('play.play', { id: deckId }) }}?mode={{ mode }}&index={{ index }}&score={{ score }}&showAnswer=true"
+          href="{{ route('play.play', { id: deckId }) }}?mode={{ mode }}&index={{ index }}&showAnswer=true"
           class="add-button"
         >Voir la réponse</a>
       </div>
@@ -27,19 +27,17 @@
       </div>
       <div class="play-actions">
         <a
-          href="{{ route('play.play', { id: deckId }) }}?mode={{ mode }}&index={{ index + 1 }}&score={{ score + 1 }}&showAnswer=false"
+          href="{{ route('play.play', { id: deckId }) }}?mode={{ mode }}&index={{ index }}&showAnswer=false"
           class="add-button btn-juste"
-        >Juste</a>
+        >Voir la question</a>
         <a
-          href="{{ route('play.play', { id: deckId }) }}?mode={{ mode }}&index={{ index + 1 }}&score={{ score }}&showAnswer=false"
-          class="add-button btn-faux"
-        >Faux</a>
+          href="{{ route('play.play', { id: deckId }) }}?mode={{ mode }}&index={{ index + 1 }}&showAnswer=false"
+          class="add-button btn-juste"
+        >Prochain</a>
+
       </div>
     @end
     
-    <p class="progress">
-      Carte {{ index + 1 }} / {{ total }}
-    </p>
   </div>
 
   <style>
@@ -54,11 +52,8 @@
     
     .card-box {
       border: 2px solid #ccc;
-      border-radius: 20px;
+      border-radius: 5px;
       padding: 40px 60px;
-      text-align: center;
-      min-width: 300px;
-      max-width: 500px;
       margin-bottom: 40px;
       background: #fff;
     }
@@ -78,18 +73,6 @@
       display: flex;
       gap: 40px;
       justify-content: center;
-    }
-    
-    .btn-juste {
-      background-color: #4caf50;
-      color: white;
-      border-color: #4caf50;
-    }
-    
-    .btn-faux {
-      background-color: #e53935;
-      color: white;
-      border-color: #e53935;
     }
     
     .progress {

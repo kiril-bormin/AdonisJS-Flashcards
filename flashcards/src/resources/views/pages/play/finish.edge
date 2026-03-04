@@ -1,7 +1,7 @@
 @component('components/layout', { title: title })
   <div class="finish-container">
     <h1>
-      Vous avez exercé le deck
+      Vous avez joué le deck
     </h1>
     <p class="deck-name">
       {{ deckName }}
@@ -9,21 +9,16 @@
     <p class="mode-label">
       en mode basique
     </p>
-    <p class="result">
-      Votre résultat : {{ score }}/{{ total }}
-    </p>
-    <a href="{{ route('deck.show', { id: deckId }) }}" class="add-button">OK</a>
+    <a href="{{ route('deck.show', { id: deckId }) }}" class="add-button">Retourner vers le deck</a>
   </div>
 
   <style>
     .finish-container {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 60vh;
       font-family: sans-serif;
       text-align: center;
+      margin-top: 60px;
     }
     
     .deck-name {
@@ -34,7 +29,6 @@
     
     .mode-label {
       font-size: 18px;
-      color: #555;
       margin-bottom: 20px;
     }
     
