@@ -1,0 +1,130 @@
+@component('components/layout', { title: title })
+  <div class="container">
+    <h1>
+      Vous avez choisi le deck
+    </h1>
+    <p class="name-deck">
+      {{ deck.name }}
+    </p>
+    <form action="{{ route('play.play', { id: deck.id }) }}" method="GET">
+      <div class="options-game">
+        <label for="mode">Exercer en mode </label>
+        <select name="mode" id="mode">
+          <option value="basic">
+            basique
+          </option>
+        </select>
+      </div>
+      <div class="start-button">
+        <button class="add-button" type="submit">C'est parti</button>
+      </div>
+    </form>
+
+    <style>
+      .container {
+        width: 1000px;
+        margin: 0 auto;
+        font-family: sans-serif;
+      }
+      
+      .deck-table th:nth-child(3),
+      .deck-table td.options-cell {
+        width: 1px;
+        white-space: nowrap;
+        padding: 8px;
+      }
+      
+      .options-wrapper {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+      
+      .options {
+        display: flex;
+        gap: 10px;
+      }
+      
+      h1 {
+        text-align: center;
+      }
+      
+      .buttons-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+      }
+      
+      .start-button {
+        display: flex;
+        gap: 10px;
+      }
+      
+      .description {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      .deck-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+      }
+      
+      .deck-table th {
+        text-align: left;
+        font-size: 25px;
+        padding-bottom: 20px;
+        border: 1px solid #dddddd;
+        padding: 8px;
+      }
+      
+      .deck-table td {
+        padding: 10px 0;
+        font-size: 18px;
+        border: 1px solid #dddddd;
+        padding: 8px;
+      }
+      
+      .deck-table td:first-child {
+        font-weight: bold;
+      }
+      
+      .deck-link {
+        text-decoration: none;
+        color: black;
+      }
+      
+      .name-deck {
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 40px;
+        margin-top: 20px;
+      }
+      
+      .options-game {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+      
+      .options-game label,
+      select {
+        font-size: 25px;
+      }
+      
+      .start-button {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+      }
+    </style>
+  </div>
+@endcomponent

@@ -1,17 +1,24 @@
 @component('components/layout', { title: title })
   <div class="container">
     <div class="buttons-section">
-      <form action="{{ route('deck.edit', { id: deck.id }) }}" method="GET">
-        <button class="add-button" type="submit">Modifier le deck</button>
-      </form>
-      <form
-        action="{{ route('deck.destroy', { id: deck.id }) }}"
-        method="POST"
-        onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer le deck « {{ deck.name }} » ?')"
-      >
-        {{ csrfField() }}
-        <button class="add-button" type="submit">Supprimer le deck</button>
-      </form>
+      <div class="start-button">
+        <form action="{{ route('play.show', { id: deck.id }) }}" method="GET">
+          <button class="add-button" type="submit">Jouer avec ce deck</button>
+        </form>
+      </div>
+      <div class="action-buttons">
+        <form action="{{ route('deck.edit', { id: deck.id }) }}" method="GET">
+          <button class="add-button" type="submit">Modifier le deck</button>
+        </form>
+        <form
+          action="{{ route('deck.destroy', { id: deck.id }) }}"
+          method="POST"
+          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer le deck « {{ deck.name }} » ?')"
+        >
+          {{ csrfField() }}
+          <button class="add-button" type="submit">Supprimer le deck</button>
+        </form>
+      </div>
     </div>
     <div>
       <h1>
@@ -96,9 +103,20 @@
     
     .buttons-section {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: center;
       gap: 10px;
-      left: 70%;
+      margin-bottom: 20px;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .start-button {
+      display: flex;
+      gap: 10px;
     }
     
     .description {

@@ -1,0 +1,101 @@
+@component('components/layout', { title: title })
+  <div class="play-container">
+
+    @if(!showAnswer)
+      <div class="card-box">
+        <p class="card-label">
+          Question
+        </p>
+        <p class="card-content">
+          {{ card.front }}
+        </p>
+      </div>
+      <div class="play-actions">
+        <a
+          href="{{ route('play.play', { id: deckId }) }}?mode={{ mode }}&index={{ index }}&score={{ score }}&showAnswer=true"
+          class="add-button"
+        >Voir la réponse</a>
+      </div>
+    @else
+      <div class="card-box">
+        <p class="card-label">
+          Réponse
+        </p>
+        <p class="card-content">
+          {{ card.back }}
+        </p>
+      </div>
+      <div class="play-actions">
+        <a
+          href="{{ route('play.play', { id: deckId }) }}?mode={{ mode }}&index={{ index + 1 }}&score={{ score + 1 }}&showAnswer=false"
+          class="add-button btn-juste"
+        >Juste</a>
+        <a
+          href="{{ route('play.play', { id: deckId }) }}?mode={{ mode }}&index={{ index + 1 }}&score={{ score }}&showAnswer=false"
+          class="add-button btn-faux"
+        >Faux</a>
+      </div>
+    @end
+    
+    <p class="progress">
+      Carte {{ index + 1 }} / {{ total }}
+    </p>
+  </div>
+
+  <style>
+    .play-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      font-family: sans-serif;
+    }
+    
+    .card-box {
+      border: 2px solid #ccc;
+      border-radius: 20px;
+      padding: 40px 60px;
+      text-align: center;
+      min-width: 300px;
+      max-width: 500px;
+      margin-bottom: 40px;
+      background: #fff;
+    }
+    
+    .card-label {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+    
+    .card-content {
+      font-size: 18px;
+      color: #333;
+    }
+    
+    .play-actions {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+    }
+    
+    .btn-juste {
+      background-color: #4caf50;
+      color: white;
+      border-color: #4caf50;
+    }
+    
+    .btn-faux {
+      background-color: #e53935;
+      color: white;
+      border-color: #e53935;
+    }
+    
+    .progress {
+      margin-top: 30px;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+@endcomponent

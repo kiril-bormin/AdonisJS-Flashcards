@@ -1,0 +1,46 @@
+@component('components/layout', { title: title })
+  <div class="finish-container">
+    <h1>
+      Vous avez exercé le deck
+    </h1>
+    <p class="deck-name">
+      {{ deckName }}
+    </p>
+    <p class="mode-label">
+      en mode basique
+    </p>
+    <p class="result">
+      Votre résultat : {{ score }}/{{ total }}
+    </p>
+    <a href="{{ route('deck.show', { id: deckId }) }}" class="add-button">OK</a>
+  </div>
+
+  <style>
+    .finish-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    
+    .deck-name {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .mode-label {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    
+    .result {
+      font-size: 22px;
+      margin-bottom: 40px;
+    }
+  </style>
+@endcomponent

@@ -9,6 +9,7 @@
 
 import CardsController from '#controllers/cards_controller'
 import DecksController from '#controllers/decks_controller'
+import PlaysController from '#controllers/plays_controller'
 import router from '@adonisjs/core/services/router'
 
 //DECKS ROUTES
@@ -36,3 +37,9 @@ router.get('/card/:id/edit', [CardsController, 'edit']).as('card.edit')
 router.post('/card/:id', [CardsController, 'update']).as('card.update')
 
 router.post('/card/:id/destroy', [CardsController, 'destroy']).as('card.destroy')
+
+//PLAY ROUTES
+
+router.get('/play/:id/', [PlaysController, 'show']).as('play.show')
+
+router.get('/play/:id/game', [PlaysController, 'play']).as('play.play')
