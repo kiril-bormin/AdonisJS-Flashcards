@@ -26,6 +26,12 @@
         </p>
       </div>
       <div class="play-actions">
+        @if(index > 0)
+          <a
+            href="{{ route('play.play', { id: deckId }) }}?mode={{ mode }}&index={{ index -1 }}&showAnswer=false"
+            class="add-button btn-juste"
+          >Précédent</a>
+        @endif
         <a
           href="{{ route('play.play', { id: deckId }) }}?mode={{ mode }}&index={{ index }}&showAnswer=false"
           class="add-button btn-juste"
