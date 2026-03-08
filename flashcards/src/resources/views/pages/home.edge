@@ -1,101 +1,102 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>
-      Flashcarder
-    </title>
-  </head>
-  <body>
-    @component('components/layout', { title: 'Accueil' })
-      <div class="container">
-        <h1>
-          Mes decks
-        </h1>
-        <table class="deck-table">
-          <tr>
-            <th>
-              Titre
-            </th>
-            <th>
-              Description
-            </th>
-            <th class="text-right">
-              Cartes
-            </th>
-          </tr>
-          @each(deck in decks)
-            <tr>
-              <td>
-                <a href="{{ route('deck.show', { id: deck.id }) }}" class="deck-link">
-                  {{ deck.name }}
-                  </a>
-              </td>
-              <td>
-                {{ deck.description }}
-              </td>
-              <td class="text-right">
-                {{ deck.$extras.cards_count || 0 }}
-              </td>
-            </tr>
-          @end
-        </table>
-      </div>
-      <form action="{{ route('deck.create') }}" method="GET">
-        <button class="add-button" type="submit">Créer un nouveau deck</button>
-      </form>
-    @endcomponent
-      
-    <script src="js/script.js">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <title>
+    Flashcarder
+  </title>
+</head>
 
-    </script>
-    <style>
-      .container {
-        width: 1000px;
-        margin: 0 auto;
-        font-family: sans-serif;
-      }
-      
-      .container h1 {
-        text-align: center;
-        margin-bottom: 40px;
-      }
-      
-      .deck-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 30px;
-      }
-      
-      .deck-table th {
-        text-align: left;
-        font-size: 25px;
-        padding-bottom: 20px;
-        border: 1px solid #dddddd;
-        padding: 8px;
-      }
-      
-      .deck-table td {
-        padding: 10px 0;
-        font-size: 18px;
-        border: 1px solid #dddddd;
-        padding: 8px;
-      }
-      
-      .deck-table td:first-child {
-        font-weight: bold;
-      }
-      
-      .deck-link {
-        text-decoration: none;
-        color: black;
-      }
-    </style>
+<body>
+  @component('components/layout', { title: 'Accueil' })
+  <div class="container">
+    <h1>
+      Mes decks
+    </h1>
+    <table class="deck-table">
+      <tr>
+        <th>
+          Titre
+        </th>
+        <th>
+          Description
+        </th>
+        <th class="text-right">
+          Cartes
+        </th>
+      </tr>
+      @each(deck in decks)
+      <tr>
+        <td>
+          <a href="{{ route('deck.show', { id: deck.id }) }}" class="deck-link">
+            {{ deck.name }}
+          </a>
+        </td>
+        <td>
+          {{ deck.description }}
+        </td>
+        <td class="text-right">
+          {{ deck.$extras.cards_count || 0 }}
+        </td>
+      </tr>
+      @end
+    </table>
+  </div>
+  <form action="{{ route('deck.create') }}" method="GET">
+    <button class="add-button" type="submit">Créer un nouveau deck</button>
+  </form>
+  @endcomponent
 
-  </body>
+  <script src="js/script.js">
+
+  </script>
+  <style>
+    .container {
+      width: 1000px;
+      margin: 0 auto;
+      font-family: sans-serif;
+    }
+
+    .container h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .deck-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    .deck-table th {
+      text-align: left;
+      font-size: 25px;
+      padding-bottom: 20px;
+      border: 1px solid #dddddd;
+      padding: 8px;
+    }
+
+    .deck-table td {
+      padding: 10px 0;
+      font-size: 18px;
+      border: 1px solid #dddddd;
+      padding: 8px;
+    }
+
+    .deck-table td:first-child {
+      font-weight: bold;
+    }
+
+    .deck-link {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+
+</body>
 
 </html>

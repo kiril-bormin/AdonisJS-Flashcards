@@ -1,1 +1,9 @@
 import vine from '@vinejs/vine'
+const loginUserValidator = vine.compile(
+ vine.object({
+ username: vine.string().minLength(3),
+ password: vine.string().minLength(8),
+ })
+)
+export { loginUserValidator }
+

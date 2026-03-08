@@ -7,6 +7,7 @@
 |
 */
 
+import AuthController from '#controllers/auth_controller'
 import CardsController from '#controllers/cards_controller'
 import DecksController from '#controllers/decks_controller'
 import PlaysController from '#controllers/plays_controller'
@@ -43,3 +44,10 @@ router.post('/card/:id/destroy', [CardsController, 'destroy']).as('card.destroy'
 router.get('/play/:id/', [PlaysController, 'show']).as('play.show')
 
 router.get('/play/:id/game', [PlaysController, 'play']).as('play.play')
+
+
+//LOGIN ROUTES
+
+router.post('/login', [AuthController, 'login']).as('auth.login')
+router.post('/logout', [AuthController, 'logout']).as('auth.logout')
+

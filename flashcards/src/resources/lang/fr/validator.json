@@ -1,0 +1,18 @@
+{
+  "shared": {
+    "fields": {
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "email": "Adresse e-mail",
+      "front": "Question",
+      "back": "Réponse",
+      "name": "Nom",
+      "description": "Description"
+    },
+    "messages": {
+      "required": "Le champ {field} est obligatoire.",
+      "minLength": "Le champ {field} doit contenir au moins {min} caractères.",
+      "email": "Le champ {field} doit être une adresse e-mail valide."
+    }
+  }
+}
