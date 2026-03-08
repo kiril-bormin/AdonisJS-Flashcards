@@ -1,7 +1,10 @@
 @component('components/layout', { title: title })
+<div class="naming">
   <form action="{{ route('card.update', { id: card.id }) }}" method="POST">
     {{ csrfField() }}
-    {{-- Bloc front --}}
+    <input type="hidden" name="_method" value="PUT" />
+
+    {{-- Bloc Front (Question) --}}
     <div class="field">
       <label for="front">Question</label>
       <input type="text" id="front" name="front" value="{{ old('front') || card.front }}" />
@@ -11,16 +14,70 @@
         </p>
       @end
     </div>
-    {{-- Bloc back --}}
+
+    {{-- Bloc Back (Réponse) --}}
     <div class="field">
       <label for="back">Réponse</label>
-      <input type="text" id="back" name="back" value="{{ old('back') || card.back }}" />
+      <textarea id="back" name="back">{{ old('back') || card.back }}</textarea>
       @inputError('back')
         <p class="text-danger">
           {{ $messages.join(', ') }}
         </p>
       @end
     </div>
-    <button class="add-button" type="submit">Enregistrer</button>
+
+    <div class="buttons">
+      <button class="add-button" type="submit">Enregistrer</button>
+      <button 
+        class="add-button" 
+        type="button" 
+        onclick="window.location.href='{{ route('deck.show', { id: card.deckId }) }}'">
+        Annuler
+      </button>
+    </div>
   </form>
-@endcomponent
+</div>
+@end
+
+<style>
+  label {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  textarea {
+    resize: none;
+    padding-top: 5px;
+  }
+  #front {
+    font-size: 16px;
+    width: 250px;
+    padding: 5px; 
+    margin-bottom: 20px;
+  }
+  #back {
+    font-size: 14px;
+    width: 400px;
+    height: 100px;
+    padding: 5px;
+  }
+  .naming {
+    display: flex;
+    justify-content: center;
+  }
+  .field {
+    display: flex;
+    align-items: start;
+    gap: 15px;
+  }
+  .buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+  }
+  .text-danger {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+</style>
