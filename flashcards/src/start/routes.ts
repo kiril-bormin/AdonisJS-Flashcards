@@ -9,6 +9,7 @@
 
 import AuthController from '#controllers/auth_controller'
 import CardsController from '#controllers/cards_controller'
+import CategoriesController from '#controllers/categories_controller'
 import DecksController from '#controllers/decks_controller'
 import PlaysController from '#controllers/plays_controller'
 import router from '@adonisjs/core/services/router'
@@ -45,9 +46,22 @@ router.get('/play/:id/', [PlaysController, 'show']).as('play.show')
 
 router.get('/play/:id/game', [PlaysController, 'play']).as('play.play')
 
-
 //LOGIN ROUTES
 
 router.post('/login', [AuthController, 'login']).as('auth.login')
+
 router.post('/logout', [AuthController, 'logout']).as('auth.logout')
 
+//CATEGORIE ROUTES
+
+router.get('/categories', [CategoriesController, 'index']).as('categories.index')
+
+router.get('/categories/create', [CategoriesController, 'create']).as('categories.create')
+
+router.post('/categories/store', [CategoriesController, 'store']).as('categories.store')
+
+router.get('/categories/:id/edit', [CategoriesController, 'edit']).as('categories.edit')
+
+router.post('/categories/:id', [CategoriesController, 'update']).as('categories.update')
+
+router.post('/categories/:id/destroy', [CategoriesController, 'destroy']).as('categories.destroy')

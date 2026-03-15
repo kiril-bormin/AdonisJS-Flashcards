@@ -25,20 +25,31 @@ body {
   width: 100%;
   margin-inline: auto;
   height: 100px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family:
+    'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-
+.titre-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
 .logo-header,
 .login-container {
   display: flex;
   align-items: center;
 }
 
-.deck-card {}
+.nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.deck-card {
+}
 
 .deck-link {
   text-decoration: none;
-  color: black
+  color: black;
 }
 
 .add-button {

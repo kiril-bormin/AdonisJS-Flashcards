@@ -1,6 +1,6 @@
 @component('components/layout', { title: title })
 
-    <div class="naming">
+<div class="naming">
   <form action="{{ route('deck.store') }}" method="POST">
     {{ csrfField() }}
     <input type="hidden" name="_method" value="PUT" />
@@ -10,68 +10,94 @@
       <label for="name">Name</label>
       <input type="text" id="name" name="name" value="" />
       @inputError('name')
-        <p class="text-danger">
-          {{ $messages.join(', ') }}
-        </p>
+      <p class="text-danger">
+        {{ $messages.join(', ') }}
+      </p>
       @end
     </div>
     {{-- Bloc Description --}}
     <div class="field">
       <label for="description">Description</label>
-      <textarea
-        type="text"a
-        id="description"
-        name="description"
-        value=""></textarea>
+      <textarea type="text" a id="description" name="description" value=""></textarea>
       @inputError('description')
-        <p class="text-danger">
-          {{ $messages.join(', ') }}
-        </p>
+      <p class="text-danger">
+        {{ $messages.join(', ') }}
+      </p>
+      @end
+    </div>
+    {{-- Bloc Categorie --}}
+
+    <div class="field">
+      <label for="categoryId">Catégorie</label>
+      <select name="categoryId" id="categoryId" class="form-control">
+        <option value="">-- Sélectionner une catégorie --</option>
+        @each(category in categories)
+        <option value="{{ category.id }}">
+          {{ category.name }}
+        </option>
+        @end
+      </select>
+      @inputError('categoryId')
+      <p class="text-danger">
+        {{ $messages.join(', ') }}
+      </p>
       @end
     </div>
     <div class="buttons">
-    <button class="add-button" type="submit">Enregistrer</button>
-    <button class="add-button" type="button" onclick="window.location.href='{{ route('home') }}'">Annuler</button>
+      <button class="add-button" type="submit">Enregistrer</button>
+      <button class="add-button" type="button" onclick="window.location.href='{{ route('home') }}'">Annuler</button>
     </div>
   </form>
-    </div>
+</div>
 @endcomponent
 
 <style>
-  label{
+  label {
     font-size: 16px;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
-  textarea{
+
+  textarea {
     resize: none;
     padding-top: 0;
   }
-  #name{
+
+  #name {
     font-size: 16px;
     width: 250px;
-    padding: 5px; 
+    padding: 5px;
     margin-bottom: 20px;
   }
-  #description{
+
+  #description {
     font-size: 14px;
     width: 400px;
     height: 100px;
-    padding: 5px
+    padding: 5px;
+    margin-bottom: 20px;
   }
-  .naming{
+
+  #categoryId {
+    font-size: 16px;
+    width: 250px;
+    padding: 5px;
+  }
+
+  .naming {
     display: flex;
     justify-content: center;
   }
-  .field{
+
+  .field {
     display: flex;
     align-items: start;
     gap: 15px;
   }
-  .buttons{
+
+  .buttons {
     margin-top: 20px;
     display: flex;
     gap: 20px;
   }
-
 </style>

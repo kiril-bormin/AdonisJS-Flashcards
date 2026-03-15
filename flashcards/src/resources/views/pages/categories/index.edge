@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>
+      Flashcarder
+    </title>
+  </head>
+
+  <body>
+    @component('components/layout', { title: 'Accueil' })
+      <div class="container">
+        <h1 class="top-header">
+          Liste des Catégories
+        </h1>
+        <table class="deck-table">
+          <tr>
+            <th>
+              #
+            </th>
+            <th>
+              Nom
+            </th>
+            <th>
+              Options
+            </th>
+          </tr>
+          @each(category in categories)
+            <tr>
+              <td>
+                {{ category.id }}
+              </td>
+              <td>
+                {{ category.name }}
+              </td>
+              <td class="options-cell">
+                <div class="options-wrapper">
+                  <form action="{{ route('categories.edit', { id: category.id }) }}" method="GET">
+                    <button class="add-button" type="submit">Modifier</button>
+                  </form>
+                  <form
+                    action="{{ route('categories.destroy', { id: category.id }) }}"
+                    method="POST"
+                    onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette carte ?')"
+                  >
+                    {{ csrfField() }}
+                <button class="add-button" type="submit">Supprimer</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          @end
+        </table>
+      </div>
+      <form action="{{ route('categories.create') }}" method="GET">
+        <button class="add-button" type="submit">Créer une nouvelle catégorie</button>
+      </form>
+    @endcomponent
+    
+    <script src="js/script.js">
+
+    </script>
+    <style>
+      .container {
+        width: 1000px;
+        margin: 0 auto;
+        font-family: sans-serif;
+      }
+      
+      .deck-table th:nth-child(3),
+      .deck-table td.options-cell {
+        width: 1px;
+        white-space: nowrap;
+        padding: 8px;
+      }
+      
+      .options-cell button {
+        margin-top: 0;
+      }
+      
+      .options-wrapper {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+      
+      .options {
+        display: flex;
+        gap: 10px;
+      }
+      
+      h1 {
+        text-align: center;
+      }
+      
+      .buttons-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+      }
+      
+      .start-button {
+        display: flex;
+        gap: 10px;
+      }
+      
+      .description {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      .deck-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+      }
+      
+      .deck-table th {
+        text-align: left;
+        font-size: 25px;
+        padding-bottom: 20px;
+        border: 1px solid #dddddd;
+        padding: 8px;
+      }
+      
+      .deck-table td {
+        padding: 10px 0;
+        font-size: 18px;
+        border: 1px solid #dddddd;
+        padding: 8px;
+      }
+      
+      .deck-table td:first-child {
+        font-weight: bold;
+      }
+      
+      .deck-link {
+        text-decoration: none;
+        color: black;
+      }
+      
+      .top-header {
+        margin-bottom: 40px;
+      }
+    </style>
+
+  </body>
+
+</html>

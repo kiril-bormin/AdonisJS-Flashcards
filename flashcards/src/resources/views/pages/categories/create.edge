@@ -1,0 +1,86 @@
+@component('components/layout', { title: title })
+  <div class="top-header">
+    <h1 class="">
+      Nouvelle Catégorie
+    </h1>
+  </div>
+  <div class="naming">
+    <form action="{{ route('categories.store') }}" method="POST">
+      {{ csrfField() }}
+    <input type="hidden" name="_method" value="PUT" />
+      {{-- Bloc Name --}}
+
+      <div class="field">
+        <label for="name">Nom de la catégorie</label>
+        <input type="text" id="name" name="name" value="" />
+        @inputError('name')
+          <p class="text-danger">
+            {{ $messages.join(', ') }}
+          </p>
+        @end
+      </div>
+      <div class="buttons">
+        <button class="add-button" type="submit">Enregistrer</button>
+        <button
+          class="add-button"
+          type="button"
+          onclick="window.location.href='{{ route('categories.index') }}'"
+        >Annuler</button>
+      </div>
+    </form>
+  </div>
+@endcomponent
+
+<style>
+  label {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  textarea {
+    resize: none;
+    padding-top: 0;
+  }
+  
+  #name {
+    font-size: 16px;
+    width: 250px;
+    padding: 5px;
+    margin-bottom: 20px;
+  }
+  
+  #description {
+    font-size: 14px;
+    width: 400px;
+    height: 100px;
+    padding: 5px;
+  }
+  
+  .naming {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .field {
+    display: flex;
+    align-items: start;
+    gap: 15px;
+  }
+  
+  .buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .top-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .top-header h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+</style>

@@ -23,6 +23,9 @@
           Titre
         </th>
         <th>
+          Catégorie
+        </th>
+        <th>
           Description
         </th>
         <th class="text-right">
@@ -35,6 +38,9 @@
           <a href="{{ route('deck.show', { id: deck.id }) }}" class="deck-link">
             {{ deck.name }}
           </a>
+        </td>
+        <td>
+          {{ categories[deck.categoryId - 1].name }}
         </td>
         <td>
           {{ deck.description }}

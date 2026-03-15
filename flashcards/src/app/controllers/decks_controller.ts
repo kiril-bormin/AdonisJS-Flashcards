@@ -1,3 +1,4 @@
+import Category from '#models/category'
 import Deck from '#models/deck'
 import { deckValidator } from '#validators/deck'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -9,25 +10,28 @@ export default class DecksController {
    */
   async index({ view }: HttpContext) {
     const decks = await Deck.query().withCount('cards')
-    return view.render('pages/home', { decks })
+    const categories = await Category.query()
+    return view.render('pages/home', { decks, categories })
   }
 
   /**
    * Display form to create a new record
    */
   async create({ view }: HttpContext) {
-    return view.render('pages/deck/create', { title: 'Création de decks' })
+    const categories = await Category.query()
+    return view.render('pages/deck/create', { title: 'Création de decks', categories })
   }
 
   /**
    * Handle form submission for the create action
    */
   async store({ request, session, response }: HttpContext) {
-    const { name, description } = await request.validateUsing(deckValidator)
+    const { name, description, categoryId } = await request.validateUsing(deckValidator)
 
     const deck = await Deck.create({
       name,
       description,
+      categoryId,
     })
 
     session.flash('success', `Le nouveau deck ${deck.name} a été ajouté avec succès !`)
@@ -48,22 +52,27 @@ export default class DecksController {
    */
   async edit({ params, view }: HttpContext) {
     const deck = await Deck.findOrFail(params.id)
-    return view.render('pages/deck/edit', { deck, title: `Modifier ${deck.name}` })
+    const categories = await Category.query()
+    return view.render('pages/deck/edit', { deck, title: `Modifier ${deck.name}`, categories })
   }
 
   /**
    * Handle form submission for the edit action
    */
   async update({ params, request, session, response }: HttpContext) {
-    const { name, description } = await request.validateUsing(deckValidator)
+    try {
+      const { name, description, categoryId } = await request.validateUsing(deckValidator)
+      const deck = await Deck.findOrFail(params.id)
+      deck.name = name
+      deck.description = description
+      deck.categoryId = categoryId
+      await deck.save()
 
-    const deck = await Deck.findOrFail(params.id)
-    deck.name = name
-    deck.description = description
-    await deck.save()
-
-    session.flash('success', `Le deck ${deck.name} a été modifié avec succès !`)
-    return response.redirect().toRoute('deck.show', { id: deck.id })
+      session.flash('success', `Le deck ${deck.name} a été modifié avec succès !`)
+      return response.redirect().toRoute('deck.show', { id: deck.id })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   /**
